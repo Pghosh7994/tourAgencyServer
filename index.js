@@ -7,18 +7,6 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-
-
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.e4tmo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
-
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -104,13 +92,6 @@ async function run2() {
     app.post("/orders", async (req, res) => {
       const newUser = req.body;
       console.log('hit api', newUser)
-      // const order = {
-      //   "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCox%2527s_Bazar&psig=AOvVaw3E2MpEXF9kLJ3XIUb9seHt&ust=1646340951336000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKDh8tinqPYCFQAAAAAdAAAAABAD",
-      //   "service": "Cox's Bazar",
-      //   "cost": "2000",
-      //   "description": "Cox's Bazar is a city, fishing port, tourism centre, and district headquarters in southeastern Bangladesh",
-      //   "status": "valid"
-      // }
       const result = await usersCollection.insertOne(newUser);
       // console.log("got new user", req.body);
       console.log("added user", result);
